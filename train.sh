@@ -1,4 +1,8 @@
 #!/bin/bash
+set -euo pipefail
+
+# Ensure local SAM package is importable even if editable install was not executed.
+export PYTHONPATH="$(pwd)/segment-anything:${PYTHONPATH:-}"
 
 torchrun --nproc_per_node=1 train.py \
         --datapath '../Datasets_HSN/' \
